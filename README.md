@@ -1,2 +1,2 @@
-## WNS-API
-The API code for the WNS is found in the folder wsn-api 
+## WSN-API
+The API code for the WSN is found in the folder wsn-api 
