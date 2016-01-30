@@ -1,16 +1,4 @@
 <!DOCTYPE html>
-<!--<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>WSN</title>
-    </head>
-    <body>
-        <h1>Well come to Wireless Network Sensor API!</h1>
-        <a href="./downloads/WSN-API_Document.pdf">Download WSN API Documentation (Version-1.0)</a>
-    </body>
-</html>-->
-
-<!DOCTYPE html>
 <html>
     <head>
         <title>WSN API</title>
