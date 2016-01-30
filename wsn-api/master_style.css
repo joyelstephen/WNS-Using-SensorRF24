@@ -1,0 +1,279 @@
+/* 
+    Document   : master_style
+    Created on : 30/08/2014, 12:12:24 PM
+    Author     : store
+    Description:
+        Purpose of the stylesheet follows.
+*/
+body {   
+    background-color: #ffffff;
+    color: #3f3f3f;
+    font-family: 'Lucida Grande',Tahoma,Verdana,Arial,sans-serif;
+    font-size: 10pt;     
+    line-height: 20px;
+    margin: 0px;
+    padding: 0px;
+}
+#main-body {
+    width: 990px;
+    clear: inherit;
+    background-color: #ffffff;
+    margin-right: auto;
+    margin-left: auto;
+    overflow: hidden;
+    border-left: 1px solid #a4a4a4;
+    border-right: 1px solid #a4a4a4;
+    border-bottom: 1px solid #a4a4a4;
+}
+header{
+    height: 70px;
+    background-color: #c8f2fe;
+    padding: 10px;
+}
+
+nav {
+    background-color: #8bd2e6;
+    height: 38px;
+    margin: 0;
+    width: 100%;
+}
+#green  {
+    background-color: #aacc61;
+}
+nav ul {
+    height: 30px;
+    list-style-type: none;
+    margin: 0;
+    padding-top: 8px;
+    padding-left: 0px;
+}
+nav ul li {
+    float: left;
+    margin: 0px 1px 0px 1px;
+}
+#logout-div-left{
+    float: left;
+}
+#logout-div-right{
+    float: right;
+    margin-right: 10px;
+}
+.myButtons{
+    background-color: #363b8c;
+    color: #FFFFFF;
+    display: block;
+    font-size: 1.1em;
+    height: 16px;
+    padding: 8px 15px 6px 15px;
+    text-decoration: none;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    width: 70px;
+    text-align: center;
+    float: left;
+    margin-left: 10px;
+}
+.myButtons-brown{
+    background-color: #363b8c;
+    color: #FFFFFF;
+    display: block;
+    font-size: 1.1em;
+    height: 16px;
+    padding: 8px 15px 6px 15px;
+    text-decoration: none;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    width: 70px;
+    text-align: center;
+    float: left;
+    margin-left: 10px;
+}
+.myButtons-red{
+    background-color: #ff0000;
+    color: #FFFFFF;
+    display: block;
+    font-size: 1.1em;
+    height: 16px;
+    padding: 8px 15px 6px 15px;
+    text-decoration: none;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    width: 70px;
+    text-align: center;
+    float: left;
+    margin-left: 10px;
+}
+.myActiveButton{
+    background-color: #efefef;
+    color: #015A84;
+    display: block;
+    font-size: 1.1em;
+    height: 16px;
+    padding: 8px 15px 6px 15px;
+    text-decoration: none;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    width: 70px;
+}
+.mySideNavButton{
+    background-color: aqua;
+    border-top: 1px solid #a4a4a4;
+    display: block;
+    font-size: 1.2em;
+    height: 28px;
+    padding-left: 20px;
+    padding-top: 10px;
+    text-decoration: none;
+    width: 300px;
+    text-align: left;
+    float: left;
+    margin-left: 0px;
+}
+.myActiveSideNavButton{
+    background-color: #efefef;
+    border-top: 1px solid #a4a4a4;
+    display: block;
+    font-size: 1.2em;
+    height: 28px;
+    padding-left: 20px;
+    padding-top: 10px;
+    text-decoration: none;
+    width: 300px;
+    text-align: left;
+    float: left;
+    margin-left: 0px;
+}
+nav a{
+    background-color: #e7f3f3;
+    color: #FFFFFF;
+    display: block;
+    font-size: 1.1em;
+    height: 16px;
+    padding: 8px 15px 6px 15px;
+    text-decoration: none;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    width: 50px;
+    text-align: center;
+    float: left;
+    margin-left: 10px;
+}
+article{
+    background-color: #e7f3f3;  
+    overflow: hidden;
+}
+#three-fourth{
+    background-color: #efefef;
+    width: 650px;
+    height: 100%;
+    float: left;
+    padding: 9px;
+    border-right: 1px solid #a4a4a4;
+}
+#one-fourth{
+    background-color: #e7f3f3;
+    width: 300px;
+    padding: 10px;
+    float: left;
+    border-right: 1px solid #a4a4a4;
+}
+#admin-full-width{
+    background-color: #efefef;
+    width: 970px;
+    height: 100%;
+    float: left;
+    padding: 10px;
+}
+#admin-three-fourth{
+    background-color: #efefef;
+    border-bottom: 1px solid #a4a4a4;
+    width: 650px;
+    height: 303px;
+    float: left;
+    padding: 10px;
+}
+#admin-one-fourth{
+    background-color: #e7f3f3;
+    width: 300px;
+    height: 400px;
+    padding: 10px;
+    float: left;
+}
+.table-border {
+    border: 1px solid #a4a4a4;
+    border-collapse: collapse;
+}
+.table-shade{
+    background: #aacc61;
+}
+#manual-full-width{
+    background-color: #efefef;
+    width: 970px;
+    height: 100%;
+    float: left;
+    padding: 10px;
+}
+#manual-nav{
+    float: right;
+    width: 300px;
+    padding: 10px;
+}
+#side_nav{
+    background-color: #C8F2FE;
+    border-bottom: 1px solid #a4a4a4;
+    width: 320px;
+    padding-left: 0px;
+    float: left;
+}
+#side_nav h1{
+    padding-left: 10px;
+}
+#side_nav a{
+    text-decoration: none;
+}
+#side_nav ul {
+    padding-left: 0px;
+}
+#side_nav ul li {
+    list-style-type: none;    
+}
+#form-div{
+    width: 280px;
+    padding-left: 10px;
+}
+footer{
+    height: 35px;
+    background-color: #c8f2fe;
+    width: 100%;
+    float: left;
+}
+footer p{
+    padding: 10px;
+    margin: 0px;
+}
+
+/*fornts --------------------*/
+p h1 h2 h3 h4 li {
+    color: #3f3f3f;
+    font-family: 'Lucida Grande',Tahoma,Verdana,Arial,sans-serif;
+}
+p {
+    font-size: 10pt; 
+    line-height: 20px;
+}
+h1{
+    font-size: 18pt;
+    margin: 10px 0px;
+    line-height: 28px;
+}
+h2{
+    font-size: 14pt;
+    margin: 6px 0px;
+    line-height: 22px;
+}
+li{
+    margin: 6px 0px;
+}
+.error {
+    color: red;
+}
