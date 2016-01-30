@@ -43,8 +43,8 @@
             </div>
             <div id="one-fourth">
                 <h2>Downloads</h2>
-                <a href="./downloads/WSN-API_Document.pdf">Download WSN API Documentation (Version-1.0)</a>
-                <a href="./downloads/WSN-API_Document.pdf">Download WSN API Documentation (Version-1.0)</a>
+                <a href="./downloads/WSN-API_Document.pdf">WSN API Documentation (V.1.0)</a>
+                <a href="./downloads/WSN-API_Document.pdf">WSN-API class for the Client (V.1.0)</a>
             </div>
         </article>
 
