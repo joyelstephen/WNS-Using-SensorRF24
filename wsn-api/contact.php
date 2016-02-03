@@ -77,7 +77,7 @@
                                 $msg .= "Subject= " . $subject . "\n";
                                 $msg .= "Message= " . $message . "\n";
                                 //Set up the mail
-                                $recipient = "stygoeco@gmail.com";
+                                $recipient = "jsteph32@myune.edu.au";
                                 $subject = "Email through the website";
                                 $mailheaders = "From: " . $name . "\n";
                                 $mailheaders .= "E-Mail:" . $email;
@@ -89,9 +89,9 @@
 
                                 echo "<p> Thank you <b>" . $name . "</b> for contacting us.
                                                                         <br/> Your submision has been sent succesfuly.
-                                                                        <br/>I will be in touch with you regarding you message shortly.<br/>
+                                                                        <br/>The admin will be in touch with you regarding you message shortly.<br/>
                                                                         <br/>
-                                                                        <br/>Stygo Ecologia </p>";
+                                                                        <br/>WSN API Web Service </p>";
                                 exit;
                             }
                         }
