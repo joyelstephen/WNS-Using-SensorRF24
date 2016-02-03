@@ -18,7 +18,7 @@
             <div id="three-fourth">
                 <h1>Registration!</h1>
                 <p>Pleas register below to get API Key.</p>
-                <form action="login.php" autocomplete="on" method="POST">
+                <form action="register.php" autocomplete="on" method="POST">
                         <fieldset>
                             <legend>Register:</legend>
                             <table>
