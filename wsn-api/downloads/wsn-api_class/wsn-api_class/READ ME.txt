@@ -1,3 +1,0 @@
-This folder contains two files:
-1. config.php - where the user's login email, password and api-key are set
-2. wsn_api.php - wsn-api class, once this class is instansiated we can call the methods to access data.
