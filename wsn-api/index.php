@@ -26,13 +26,34 @@
                     In every request the users email address, password and the API key will be sent together with the request. 
                     All responses are provided in a standard JSON format.
                 </p>
-                <br><br><br><br><br><br><br><br><br><br><br>
+                <br>
+                <h2>Downloads</h2>
+                <p><a href="./downloads/WSN-API_Document.pdf">WSN API Documentation (V.1.0)</a></p>
+                <p><a href="./downloads/wsn-api_class.zip">WSN API Class for Client (V.1.0)</a></p>
+                <br><br><br><br><br><br><br><br><br><br>
                 
             </div>
             <div id="one-fourth">
-                <h2>Downloads</h2>
-                <a href="./downloads/WSN-API_Document.pdf">WSN API Documentation (V.1.0)</a>
-                <a href="./downloads/WSN-API_Document.pdf">WSN-API class for the Client (V.1.0)</a>
+                <h1>Admin Login</h1>
+                    <form action="login.php" autocomplete="on" method="POST">
+                        <fieldset>
+                            <legend>Login:</legend>
+                            <table>
+                                <tr>
+                                    <th>User name: </th>
+                                    <th><input type="text" name="username"></th>
+                                </tr>
+                                <tr>
+                                    <td>Password:</td>
+                                    <td><input type="password" name="password"></td>
+                                </tr>
+                            </table>
+                            <!--Code for Captcha-->
+                            
+                            <!-- End of Code for Captcha-->
+                            <input type="submit" value="Submit">
+                        </fieldset>
+                    </form>                
             </div>
         </article>
 

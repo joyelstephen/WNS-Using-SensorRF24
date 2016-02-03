@@ -3,17 +3,22 @@
     include '../core/connect.php';
     
     /* process clinet request */
-    /* our URI looks like http://example.com/wsn-api/v1/meshes.php?name1=value1&name2=value2 */
+    /* our URI looks like http://turing.une.edu.au/~jsteph32/api-wsn/v1/wns.php?name1=value1&name2=value2 */
     
     //parse the url and get the components
-    $HTTP_HOST = $_SERVER["HTTP_HOST"];               // http://example.com
-    $SCRIPT_NAME = $_SERVER["SCRIPT_NAME"];           // /wsn-api/v1/meshes.php
-    $QUERY_STRING = $_SERVER["QUERY_STRING"];         // name1=value1&name2=value2
-    $REQUEST_METHOD = $_SERVER["REQUEST_METHOD"];     // GET or POST 
+    $HTTP_HOST = $_SERVER["HTTP_HOST"];               //http://turing.une.edu.au
+    $SCRIPT_NAME = $_SERVER["SCRIPT_NAME"];           //~jsteph32/api-wsn/v1/wns.php
+    $QUERY_STRING = $_SERVER["QUERY_STRING"];         //name1=value1&name2=value2
+    $REQUEST_METHOD = $_SERVER["REQUEST_METHOD"];     //GET or POST 
 
     $my_query = "";
   
     // get the authantication parameters
+    /*
+        $email = "joyel_stephen@yahoo.com";
+        $password = "secret";
+        $key = "ae8vGWPdZmLg5gPprG9sNM6yCu9fZV4n";
+    */
     if($REQUEST_METHOD == "GET")
     {
         $email = $_GET['email'];
@@ -28,13 +33,15 @@
     }
     else
     {    
+        //******************************************************************************************
         //parse the query string
         parse_str($QUERY_STRING, $my_query);
+        
+        //get_meshes_list();
         
         // if we have only email,password and key (3 query)
         if(count($my_query) == 3)
         {
-            //dispaly list of meshes
             get_meshes_list();
         }
         else if(count($my_query) == 4 && isset($my_query['mesh_name']))
@@ -56,6 +63,7 @@
      */
     function get_meshes_list()
     {
+        //$result = mysql_query("SELECT mesh_name FROM meshes ORDER BY mesh_name ASC");        
         $result = pg_query("SELECT mesh_name FROM meshes ORDER BY mesh_name ASC");
 
         // check for error
@@ -66,6 +74,7 @@
         
         $data = [];             
 
+        //while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) 
         while ($row = pg_fetch_array($result)) 
         {
             $mesh["mesh_name"] = $row["mesh_name"];
@@ -92,6 +101,13 @@
      */
     function get_mesh($mesh_name)
     {
+        /*
+        $result = mysql_query("SELECT meshes.id,meshes.mesh_address,meshes.mesh_name,nodes.node_name
+                                FROM meshes 
+                                LEFT JOIN nodes ON meshes.id = nodes.mesh_id
+                               WHERE meshes.mesh_name = '$mesh_name'");
+        */
+                                
         $result = pg_query("SELECT meshes.id,meshes.mesh_address,meshes.mesh_name,nodes.node_name
                                 FROM meshes 
                                 LEFT JOIN nodes ON meshes.id = nodes.mesh_id
@@ -104,7 +120,7 @@
         }
 
         $nodes = [];
-        
+        //while ($row = mysql_fetch_assoc($result)) 
         while ($row = pg_fetch_assoc($result)) 
         {
             // Get the deta from the row 
@@ -144,6 +160,7 @@
      */
     function deliver_response($status, $status_message, $data)
     {
+        //header("HTTP/1.1 $status $status_message");
         header("Content-Type: application/json");
         
         $response['status'] = $status;
@@ -151,7 +168,11 @@
         $response['data'] = $data;        
         
         // encode the output format to json 
-        $json_response = json_encode($response, JSON_UNESCAPED_UNICODE);      
+        $json_response = json_encode($response, JSON_UNESCAPED_UNICODE);
+        //$json_response = json_encode($response);
+        
+        //debug the env variables
+        //echo my_phpinfo();        
         
         //echo the response formatted in json 
         echo $json_response;
@@ -168,16 +189,25 @@
      */
     function authenticate($email, $password, $key)
     {
+        // get data from db
+        //$queryUser = mysql_query("SELECT * FROM api_users WHERE email = '$email' AND password = '$password' AND api_key = '$key'");
+        //$queryUser = mysql_query("SELECT * FROM api_users WHERE email = 'joyel_stephen@yahoo.com' AND password = 'secret' AND api_key = 'ae8vGWPdZmLg5gPprG9sNM6yCu9fZV4n'");
+        
         $queryUser = pg_query("SELECT * FROM api_users WHERE email = '$email' AND password = '$password' AND api_key = '$key'");
+        //$queryUser = pg_query("SELECT * FROM api_users WHERE email = 'joyel_stephen@yahoo.com' AND password = 'secret' AND api_key = 'ae8vGWPdZmLg5gPprG9sNM6yCu9fZV4n'");
         
         if($queryUser)
         {
+            //rows = mysql_num_rows($queryUser);
             $rows = pg_num_rows($queryUser);
         }
         else
         {
-            $rows = 0;
+            //echo my_phpinfo();
+            die("something failed");
         }
+        
+        //$rows = mysql_num_rows($queryUser);
         
         if ($rows == 0) 
         {
