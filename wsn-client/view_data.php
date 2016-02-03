@@ -33,8 +33,24 @@
                             <td>
                                 <select name="type">
                                     <option value="null">Please Select...</option>
+                                    <!-- populate the reading type list from database -->
+                                    <?php
+                                        //make the request
+                                        $response_readinglist = $wsn_api->get_reading_type_list();
+                                        // decode json
+                                        $result_reading_obj = json_decode($response_readinglist);
+                                        // get the meshes
+                                        $readings_obj = $result_reading_obj->{'data'}; 
+                                        // get the values $mesh_obj contains list of mesh as name=value pair
+                                        foreach($readings_obj as $readings)
+                                        {
+                                            echo "<option value=\"" . $readings->{'reading_type'} . "\">". $readings->{'reading_type'} . "<br>";
+                                        } 
+                                    ?>
+                                    <!--
                                     <option value="temperature">Temperature</option>
                                     <option value="humidity">Humidity</option>
+                                    -->
                                 </select>
                             </td>
                             <td> </td><td> </td><td> </td><td> </td><td> </td>
@@ -42,8 +58,25 @@
                             <td>
                                 <select name="location">
                                     <option value="null">Please Select...</option>
+                                    <!-- populate the meshes list from database -->
+                                    <?php
+                                        //make the request
+                                        $response_meshlist = $wsn_api->get_meshes_list();
+                                        // decode json
+                                        $result_mesh_obj = json_decode($response_meshlist);
+                                        // get the meshes
+                                        $meshes_obj = $result_mesh_obj->{'data'}; 
+                                        // get the values $mesh_obj contains list of mesh as name=value pair
+                                        $count_msesh = 1;
+                                        foreach($meshes_obj as $mesh)
+                                        {
+                                            echo "<option value=\"" . $mesh->{'mesh_name'} . "\">". $mesh->{'mesh_name'} . "<br>";
+                                        }  
+                                    ?>
+                                    <!--
                                     <option value="mesh-1">Mesh-1</option>
                                     <option value="mesh-2">Mesh-2</option>
+                                    -->
                                 </select>
                             </td>
                         </tr>
@@ -94,6 +127,7 @@
                                 <select name="f_min">
                                     <option value="null"></option>
                                     <option value="00">00</option>
+                                    <option value="10">10</option>
                                     <option value="20">20</option> 
                                     <option value="30">30</option>
                                     <option value="40">40</option>
@@ -141,6 +175,7 @@
                                 <select name="t_min">
                                     <option value="null"></option>
                                     <option value="00">00</option>
+                                    <option value="10">10</option>
                                     <option value="20">20</option> 
                                     <option value="30">30</option>
                                     <option value="40">40</option>
