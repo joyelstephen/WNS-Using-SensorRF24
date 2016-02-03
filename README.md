@@ -1,8 +1,6 @@
 ## WSN-API Web Service
 
-Full informatin about this project is found in the wiki page:
-
-https://github.com/joyelstephen/WSN-Using-SensorRF24/wiki
+Full informatin about this project is found in the wiki page: https://github.com/joyelstephen/WSN-Using-SensorRF24/wiki
 
 The folder wsn-api contains the code for WSN API Web Service and the folder wsn-client contains the code for WSN Client Web site. 
 
