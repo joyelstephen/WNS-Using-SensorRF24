@@ -1,13 +1,15 @@
 <?php
-
-//Set the account email
-define('USER_EMAIL', 'joyel_stephen@yahoo.com');
-
-//set the service password
-define('PASSWORD', 'secret');
-
-//set the api key
-define('API_KEY', 'ae8vGWPdZmLg5gPprG9sNM6yCu9fZV4n');
+   /***********************************************************
+   *  NOTE: edit this config details with correct credentials 
+   ***********************************************************/
+    //Set the account email
+    define('USER_EMAIL', 'your-email-address');
+    
+    //set the service password
+    define('PASSWORD', 'your password');
+    
+    //set the api key
+    define('API_KEY', 'your-api-key');
 
 ?>
 
