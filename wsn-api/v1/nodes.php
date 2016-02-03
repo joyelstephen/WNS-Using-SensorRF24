@@ -14,11 +14,6 @@
     $my_query = "";
   
     // get the authantication parameters
-    /*
-        $email = "joyel_stephen@yahoo.com";
-        $password = "secret";
-        $key = "ae8vGWPdZmLg5gPprG9sNM6yCu9fZV4n";
-    */
     if($REQUEST_METHOD == "GET")
     {
         $email = $_GET['email'];
@@ -33,11 +28,8 @@
     }
     else
     {    
-        //******************************************************************************************
         //parse the query string
         parse_str($QUERY_STRING, $my_query);
-        
-        //get_nodes_list();
         
         // if we have only email,password and key (3 query)
         if(count($my_query) == 3)
@@ -63,8 +55,8 @@
      */
     function get_nodes_list()
     {
-        //$result = mysql_query("SELECT node_name FROM nodes ORDER BY node_name ASC");
-        $result = pg_query("SELECT node_name FROM nodes ORDER BY node_name ASC");
+        // get data from db
+		$result = pg_query("SELECT node_name FROM nodes ORDER BY node_name ASC");
 
         // check for error
         if($result === FALSE) 
@@ -74,7 +66,6 @@
         
         $data = [];             
 
-        //while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) 
         while ($row = pg_fetch_array($result)) 
         {
             $node["node_name"] = $row["node_name"];
@@ -100,13 +91,7 @@
      */
     function get_node($node_name)
     {    
-    /*
-        $result = mysql_query("SELECT nodes.id AS node_id,nodes.node_name,sensores.id AS sensor_id,sensores.ip_address,sensores.reading_type
-                                FROM nodes 
-                                LEFT JOIN sensores ON nodes.id = sensores.node_id
-                               WHERE nodes.node_name = '$node_name'");
-        */
-                                
+		// get data from db
         $result = pg_query("SELECT nodes.id AS node_id,nodes.node_name,sensores.id AS sensor_id,sensores.ip_address,sensores.reading_type
                                 FROM nodes 
                                 LEFT JOIN sensores ON nodes.id = sensores.node_id
@@ -119,7 +104,7 @@
         }
 
         $sensores = [];
-        //while ($row = mysql_fetch_assoc($result)) 
+        
         while ($row = pg_fetch_assoc($result)) 
         {
             // Get the deta from the row 
@@ -169,10 +154,6 @@
         
         // encode the output format to json 
         $json_response = json_encode($response, JSON_UNESCAPED_UNICODE);
-        //$json_response = json_encode($response);
-        
-        //debug the env variables
-        //echo my_phpinfo();        
         
         //echo the response formatted in json 
         echo $json_response;
@@ -190,12 +171,8 @@
     function authenticate($email, $password, $key)
     {
         // get data from db
-        //$queryUser = mysql_query("SELECT * FROM api_users WHERE email = '$email' AND password = '$password' AND api_key = '$key'");
-        //$queryUser = mysql_query("SELECT * FROM api_users WHERE email = 'joyel_stephen@yahoo.com' AND password = 'secret' AND api_key = 'ae8vGWPdZmLg5gPprG9sNM6yCu9fZV4n'");
-        
-        $queryUser = pg_query("SELECT * FROM api_users WHERE email = '$email' AND password = '$password' AND api_key = '$key'");
-        //$queryUser = pg_query("SELECT * FROM api_users WHERE email = 'joyel_stephen@yahoo.com' AND password = 'secret' AND api_key = 'ae8vGWPdZmLg5gPprG9sNM6yCu9fZV4n'");
-        
+		$queryUser = pg_query("SELECT * FROM api_users WHERE email = '$email' AND password = '$password' AND api_key = '$key'");
+         
         if($queryUser)
         {
             //rows = mysql_num_rows($queryUser);

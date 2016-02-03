@@ -14,11 +14,6 @@
     $my_query = "";
   
     // get the authantication parameters
-    /*
-        $email = "joyel_stephen@yahoo.com";
-        $password = "secret";
-        $key = "ae8vGWPdZmLg5gPprG9sNM6yCu9fZV4n";
-    */
     if($REQUEST_METHOD == "GET")
     {
         $email = $_GET['email'];
@@ -33,11 +28,8 @@
     }
     else
     {    
-        //******************************************************************************************
         //parse the query string
         parse_str($QUERY_STRING, $my_query);
-        
-        //get_meshes_list();
         
         // if we have only email,password and key (3 query)
         if(count($my_query) == 3)
@@ -63,7 +55,7 @@
      */
     function get_meshes_list()
     {
-        //$result = mysql_query("SELECT mesh_name FROM meshes ORDER BY mesh_name ASC");        
+		// get data from db
         $result = pg_query("SELECT mesh_name FROM meshes ORDER BY mesh_name ASC");
 
         // check for error
@@ -74,7 +66,6 @@
         
         $data = [];             
 
-        //while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) 
         while ($row = pg_fetch_array($result)) 
         {
             $mesh["mesh_name"] = $row["mesh_name"];
@@ -101,13 +92,7 @@
      */
     function get_mesh($mesh_name)
     {
-        /*
-        $result = mysql_query("SELECT meshes.id,meshes.mesh_address,meshes.mesh_name,nodes.node_name
-                                FROM meshes 
-                                LEFT JOIN nodes ON meshes.id = nodes.mesh_id
-                               WHERE meshes.mesh_name = '$mesh_name'");
-        */
-                                
+		// get data from db
         $result = pg_query("SELECT meshes.id,meshes.mesh_address,meshes.mesh_name,nodes.node_name
                                 FROM meshes 
                                 LEFT JOIN nodes ON meshes.id = nodes.mesh_id
@@ -120,7 +105,7 @@
         }
 
         $nodes = [];
-        //while ($row = mysql_fetch_assoc($result)) 
+        
         while ($row = pg_fetch_assoc($result)) 
         {
             // Get the deta from the row 
@@ -169,10 +154,6 @@
         
         // encode the output format to json 
         $json_response = json_encode($response, JSON_UNESCAPED_UNICODE);
-        //$json_response = json_encode($response);
-        
-        //debug the env variables
-        //echo my_phpinfo();        
         
         //echo the response formatted in json 
         echo $json_response;
@@ -190,11 +171,7 @@
     function authenticate($email, $password, $key)
     {
         // get data from db
-        //$queryUser = mysql_query("SELECT * FROM api_users WHERE email = '$email' AND password = '$password' AND api_key = '$key'");
-        //$queryUser = mysql_query("SELECT * FROM api_users WHERE email = 'joyel_stephen@yahoo.com' AND password = 'secret' AND api_key = 'ae8vGWPdZmLg5gPprG9sNM6yCu9fZV4n'");
-        
         $queryUser = pg_query("SELECT * FROM api_users WHERE email = '$email' AND password = '$password' AND api_key = '$key'");
-        //$queryUser = pg_query("SELECT * FROM api_users WHERE email = 'joyel_stephen@yahoo.com' AND password = 'secret' AND api_key = 'ae8vGWPdZmLg5gPprG9sNM6yCu9fZV4n'");
         
         if($queryUser)
         {

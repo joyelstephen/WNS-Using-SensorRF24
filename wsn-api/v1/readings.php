@@ -13,12 +13,7 @@
 
     $my_query = "";
   
-    // get the authantication parameters
-    /*
-        $email = "joyel_stephen@yahoo.com";
-        $password = "secret";
-        $key = "ae8vGWPdZmLg5gPprG9sNM6yCu9fZV4n";
-    */
+    // get the authentication parameters
     if($REQUEST_METHOD == "GET")
     {
         $email = $_GET['email'];
@@ -33,11 +28,8 @@
     }
     else
     {    
-        //******************************************************************************************
         //parse the query string
         parse_str($QUERY_STRING, $my_query);
-        
-        //get_meshes_list();
         
         // if we have only email,password and key (3 query)
         if(count($my_query) == 3)
@@ -58,24 +50,6 @@
         {
             //dispaly information about the mesh
             get_reading_by_time($my_query['type'],$my_query['from'],$my_query['to']);
-/*            
-            $data = [];
-            // Get the deta from the row 
-            $temp["from"] = $my_query['from'];
-            $temp["to"] = $my_query['to'];
-            
-            // populate the data
-            array_push($data,$temp);
-            
-            if(empty($data))
-            {
-                deliver_response (404, "Not Found--", NULL);
-            }
-            else 
-            {
-                deliver_response (200, "Ok", $data);
-            }
-            */
         }
         else 
         {
@@ -91,8 +65,8 @@
      */
     function get_reading_type_list()
     {
-        //$result = mysql_query("SELECT DISTINCT reading_type FROM sensores ORDER BY reading_type ASC");        
-        $result = pg_query("SELECT DISTINCT reading_type FROM sensores ORDER BY reading_type ASC");
+        // get data from db
+		$result = pg_query("SELECT DISTINCT reading_type FROM sensores ORDER BY reading_type ASC");
 
         // check for error
         if($result === FALSE) 
@@ -101,8 +75,7 @@
         }
         
         $data = [];             
-
-        //while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) 
+ 
         while ($row = pg_fetch_array($result)) 
         {
             $type["reading_type"] = $row["reading_type"];
@@ -129,16 +102,8 @@
      */
     function get_reading($type)
     {
-        /*
-        $result = mysql_query("SELECT readings.readings,readings.time,sensores.id,meshes.mesh_name 
-                                FROM readings 
-                                LEFT JOIN sensores ON sensores.id = readings.sensor_id 
-                                LEFT JOIN nodes ON nodes.id = sensores.node_id 
-                                LEFT JOIN meshes ON meshes.id = nodes.mesh_id 
-                                WHERE sensores.reading_type = '$type'");
-        */
-        
-        $result = pg_query("SELECT readings.readings,readings.time,sensores.id,meshes.mesh_name 
+        // get data from db
+		$result = pg_query("SELECT readings.readings,readings.time,sensores.id,meshes.mesh_name 
                                 FROM readings 
                                 LEFT JOIN sensores ON sensores.id = readings.sensor_id 
                                 LEFT JOIN nodes ON nodes.id = sensores.node_id 
@@ -152,7 +117,7 @@
         }
 
         $data = [];
-        //while ($row = mysql_fetch_assoc($result)) 
+        
         while ($row = pg_fetch_assoc($result)) 
         {
             // Get the deta from the row 
@@ -185,17 +150,8 @@
      */
     function get_reading_by_location($type, $location)
     {
-
-        /*
-        $result = mysql_query("SELECT readings.readings,readings.time,sensores.id,meshes.mesh_name 
-                                FROM readings 
-                                LEFT JOIN sensores ON sensores.id = readings.sensor_id 
-                                LEFT JOIN nodes ON nodes.id = sensores.node_id 
-                                LEFT JOIN meshes ON meshes.id = nodes.mesh_id 
-                                WHERE sensores.reading_type = '$type'");
-        */
-        
-        $result = pg_query("SELECT readings.readings,readings.time,sensores.id,meshes.mesh_name 
+		// get data from db
+		$result = pg_query("SELECT readings.readings,readings.time,sensores.id,meshes.mesh_name 
                                 FROM readings 
                                 LEFT JOIN sensores ON sensores.id = readings.sensor_id 
                                 LEFT JOIN nodes ON nodes.id = sensores.node_id 
@@ -209,7 +165,7 @@
         }
 
         $data = [];
-        //while ($row = mysql_fetch_assoc($result)) 
+        
         while ($row = pg_fetch_assoc($result)) 
         {
             // Get the deta from the row 
@@ -242,19 +198,8 @@
      */
     function get_reading_by_time($type, $from, $to)
     {
-        /*
-        $result = mysql_query("SELECT readings.readings,readings.time,sensores.id,meshes.mesh_name 
-                                FROM readings 
-                                LEFT JOIN sensores ON sensores.id = readings.sensor_id 
-                                LEFT JOIN nodes ON nodes.id = sensores.node_id 
-                                LEFT JOIN meshes ON meshes.id = nodes.mesh_id 
-                                WHERE sensores.reading_type = '$type' AND readings.time >= '$from' AND readings.time <= '$to'
-                                ORDER BY readings.time");
-        */
-
-    
-    
-        $result = pg_query("SELECT readings.readings,readings.time,sensores.id,meshes.mesh_name 
+        // get data from db
+		$result = pg_query("SELECT readings.readings,readings.time,sensores.id,meshes.mesh_name 
                                 FROM readings 
                                 LEFT JOIN sensores ON sensores.id = readings.sensor_id 
                                 LEFT JOIN nodes ON nodes.id = sensores.node_id 
@@ -269,7 +214,7 @@
         }
 
         $data = [];
-        //while ($row = mysql_fetch_assoc($result)) 
+        
         while ($row = pg_fetch_assoc($result)) 
         {
             // Get the deta from the row 
@@ -281,16 +226,7 @@
             // populate the data
             array_push($data,$temp);
         }
-/*
 
-        $data = [];
-        // Get the deta from the row 
-        $temp["from"] = $from;
-        $temp["to"] = $to;
-        
-        // populate the data
-        array_push($data,$temp);
-*/        
         if(empty($data))
         {
             deliver_response (404, "Not Found", NULL);
@@ -320,10 +256,6 @@
         
         // encode the output format to json 
         $json_response = json_encode($response, JSON_UNESCAPED_UNICODE);
-        //$json_response = json_encode($response);
-        
-        //debug the env variables
-        //echo my_phpinfo();        
         
         //echo the response formatted in json 
         echo $json_response;
@@ -341,11 +273,7 @@
     function authenticate($email, $password, $key)
     {
         // get data from db
-        //$queryUser = mysql_query("SELECT * FROM api_users WHERE email = '$email' AND password = '$password' AND api_key = '$key'");
-        //$queryUser = mysql_query("SELECT * FROM api_users WHERE email = 'joyel_stephen@yahoo.com' AND password = 'secret' AND api_key = 'ae8vGWPdZmLg5gPprG9sNM6yCu9fZV4n'");
-        
-        $queryUser = pg_query("SELECT * FROM api_users WHERE email = '$email' AND password = '$password' AND api_key = '$key'");
-        //$queryUser = pg_query("SELECT * FROM api_users WHERE email = 'joyel_stephen@yahoo.com' AND password = 'secret' AND api_key = 'ae8vGWPdZmLg5gPprG9sNM6yCu9fZV4n'");
+		$queryUser = pg_query("SELECT * FROM api_users WHERE email = '$email' AND password = '$password' AND api_key = '$key'");
         
         if($queryUser)
         {
@@ -357,8 +285,6 @@
             //echo my_phpinfo();
             die("something failed");
         }
-        
-        //$rows = mysql_num_rows($queryUser);
         
         if ($rows == 0) 
         {
